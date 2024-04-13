@@ -23,6 +23,8 @@ pkgs.mkShell {
 		zopfli
 		brotli
 		# Development dependencies
+		go
+		xcaddy
 	];
 	GIT_EDITOR = "${pkgs.nano}/bin/nano";
 	shellHook = ''

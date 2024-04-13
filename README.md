@@ -1,20 +1,4 @@
-# shx
-📜 Bash/PDKSH shell action executor. Never `npx` again.
+# Build Service: Binary
+⛏ Repository for building customized multi-arch binaries.
 
-Documentation available at [kb.ltgc.cc](https://kb.ltgc.cc/shx/).
-
-## Supported shells
-* AT&T `ksh`
-  * May not work properly due to buggy `IFS` implementation.
-* Bash
-* `zsh`
-
-## Unsupported shells
-* `ash`
-* BusyBox `sh`
-* `dash`
-* `loksh` (as of version 7.4)
-* `oksh` (as of version 7.3)
-* OpenBSD `ksh`
-* `yash` (as of version 2.55)
-* `mksh` (when array slicing is supported)
+Used to generate multi-architecture executable binaries for multiple platforms.

@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir build
+mkdir -p build
 cd build
 ../shx echob Building Go projects...
 bash ../lang/go.sh

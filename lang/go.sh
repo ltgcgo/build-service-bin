@@ -5,5 +5,6 @@ cat ../lang/go.txt | while IFS= read -r line; do
 	echo Building Caddy in ${GOOS} ${GOARCH}...
 	xcaddy build --with github.com/porech/caddy-maxmind-geolocation --with github.com/lolPants/caddy-requestid --with github.com/ltgcgo/floaty
 	mv caddy "caddy_${GOOS}_${GOARCH}"
+	rm -rf ~/.cache/go-build
 done
 exit

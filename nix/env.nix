@@ -20,7 +20,7 @@ pkgs.mkShell {
 		nano
 		curl
 		gzip
-		zopfli
+		#zopfli
 		brotli
 		# Development dependencies
 		go

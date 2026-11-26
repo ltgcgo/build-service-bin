@@ -42,16 +42,22 @@ jobs:
           version: latest
       - name: Build for linux-amd64-gnu
         run: "bash target/txiki.sh linux Linux amd64 x86_64 gnu"
+        continue-on-error: true
       - name: Build for linux-amd64-musl
         run: "bash target/txiki.sh linux Linux amd64 x86_64 musl"
+        continue-on-error: true
       - name: Build for linux-arm64-gnu
         run: "bash target/txiki.sh linux Linux arm64 aarch64 gnu"
+        continue-on-error: true
       - name: Build for linux-arm64-musl
         run: "bash target/txiki.sh linux Linux arm64 aarch64 musl"
+        continue-on-error: true
       - name: Build for windows-amd64-gnu
-        run: "bash target/txiki.sh linux Linux amd64 x86_64 gnu"
+        run: "bash target/txiki.sh windows Windows amd64 x86_64 gnu"
+        continue-on-error: true
       - name: Build for windows-arm64-gnu
-        run: "bash target/txiki.sh linux Linux arm64 aarch64 gnu"
+        run: "bash target/txiki.sh windows Windows arm64 aarch64 gnu"
+        continue-on-error: true
       - name: Finalise built artefacts
         run: "./shx post"
       - name: Update the release

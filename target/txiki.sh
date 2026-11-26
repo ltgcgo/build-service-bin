@@ -8,6 +8,7 @@ function init {
 }
 
 function build_triple {
+	#set -eo pipefail
 	local os=$1
 	local osCmake=$2
 	local archLTGC=$3

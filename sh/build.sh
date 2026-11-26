@@ -1,8 +1,14 @@
 #!/bin/bash
-mkdir -p build
-cd build
+export RUN_BUILD=1
+mkdir -p remote
+cd remote
+#../shx echob Building C/C++ projects...
+bash ../lang/cxx.sh
+cd ..
 #../shx echob Building Go projects...
 #bash ../lang/go.sh
+mkdir -p build
+cd build
 ../shx echob Fetching built remote software artifacts...
 curl -Lo ../build/caddy-linux-amd64 "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"
 curl -Lo ../build/caddy-linux-arm64 "https://caddyserver.com/api/download?os=linux&arch=arm64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"

@@ -4,7 +4,6 @@ function init {
 	# Zig is installed via GitHub Actions
 	sudo apt install -y tree cmake make
 	sudo apt install -y libatomic1 libatomic1-amd64-cross libatomic1-arm64-cross libatomic1-riscv64-cross
-	#sudo apt install -y libffi-dev
 }
 
 function build_triple {
@@ -68,8 +67,8 @@ mkdir -p dist
 #build_triple linux Linux arm64 aarch64 musl
 #build_triple linux Linux riscv64 riscv64 gnu
 #build_triple linux Linux riscv64 riscv64 musl
-#build_triple windows Windows amd64 x86_64 gnu
-#build_triple windows Windows arm64 aarch64 gnu
+#build_triple windows Windows amd64 x86_64 msvc
+#build_triple windows Windows arm64 aarch64 msvc
 build_triple $1 $2 $3 $4 $5
 mv -v dist/* ../build/
 cd ..

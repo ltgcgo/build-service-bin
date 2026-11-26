@@ -52,12 +52,18 @@ jobs:
       - name: Build for linux-arm64-musl
         run: "bash target/txiki.sh linux Linux arm64 aarch64 musl"
         continue-on-error: true
-      - name: Build for windows-amd64-gnu
-        run: "bash target/txiki.sh windows Windows amd64 x86_64 gnu"
+      - name: Build for linux-riscv64-gnu
+        run: "bash target/txiki.sh linux Linux riscv64 riscv64 gnu"
         continue-on-error: true
-      - name: Build for windows-arm64-gnu
-        run: "bash target/txiki.sh windows Windows arm64 aarch64 gnu"
+      - name: Build for linux-riscv64-musl
+        run: "bash target/txiki.sh linux Linux riscv64 riscv64 musl"
         continue-on-error: true
+      #- name: Build for windows-amd64-msvc
+        #run: "bash target/txiki.sh windows Windows amd64 x86_64 msvc"
+        #continue-on-error: true
+      #- name: Build for windows-arm64-msvc
+        #run: "bash target/txiki.sh windows Windows arm64 aarch64 msvc"
+        #continue-on-error: true
       - name: Finalise built artefacts
         run: "./shx post"
       - name: Update the release

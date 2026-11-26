@@ -16,9 +16,22 @@ function build_txiki_triple {
 	local tripleLTGC="${archLTGC}-${os}-${abi}"
 	local tripleLLVM="${archLLVM}-${os}-${abi}"
 	local fileExt=""
+	local mimallocOpti="OFF"
+
 	if [ "$os" == "windows" ]; then
 		fileExt=".exe"
 	fi
+	case "$archLTGC" in
+		"amd64")
+			mimallocOpti="ON"
+			;;
+		"arm64")
+			mimallocOpti="OFF"
+			;;
+		"riscv64")
+			mimallocOpti="ON"
+			;;
+	esac
 
 	rm -rf "dist-${tripleLTGC}" 2>/dev/null
 
@@ -31,6 +44,7 @@ function build_txiki_triple {
 		-DCMAKE_ASM_COMPILER_ARG1="cc -target ${tripleLLVM}" \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DBUILD_WITH_FFI="${BUILD_WITH_FFI:-OFF}" \
+		-DMI_OPT_ARCH="${mimallocOpti}" \
 		-DCMAKE_C_FLAGS="-Wno-error=date-time"
 
 	cmake --build "dist-${tripleLTGC}" --target tjs-cli --parallel

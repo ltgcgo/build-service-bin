@@ -56,3 +56,5 @@ jobs:
           replacesArtifacts: true
           name: "Txiki.js (saghul)"
           tag: "build-txiki"
+      - name: Prevent retracted GitHub releases
+        run: git push --force origin "$GITHUB_SHA:refs/heads/build-txiki" "$GITHUB_SHA:refs/tags/build-txiki"

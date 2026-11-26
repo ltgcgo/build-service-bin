@@ -1,0 +1,58 @@
+name: Build Txiki.js (saghul)
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".github/workflows/txiki.yml"
+      - "sh/**"
+      - "target/txiki.sh"
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "30 20 * * 5"
+
+permissions:
+  contents: write
+  #pages: write
+  id-token: write
+
+concurrency:
+  group: "build-txiki"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    #environment:
+      #name: github-pages
+      #url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      #- name: Setup Nix
+        #uses: cachix/install-nix-action@v31
+        #with:
+          #nix_path: nixpkgs=channel:nixos-unstable
+      - name: Setup Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: latest
+      - name: Build the releases
+        run: "bash target/txiki.sh"
+      - name: Update the release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          artifacts: "build/*"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          makeLatest: false
+          prerelease: true
+          removeArtifacts: true
+          replacesArtifacts: true
+          name: "Txiki.js (saghul)"
+          tag: "build-txiki"

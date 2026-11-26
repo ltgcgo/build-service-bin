@@ -1,39 +1,13 @@
 #!/bin/bash
-export RUN_BUILD=1
-mkdir -p remote
-cd remote
+#export RUN_BUILD=1
+#mkdir -p remote
+#cd remote
 #../shx echob Building C/C++ projects...
-bash ../lang/cxx.sh
-cd ..
+#bash ../lang/cxx.sh
+#cd ..
 #../shx echob Building Go projects...
 #bash ../lang/go.sh
-mkdir -p build
-cd build
-../shx echob Fetching built remote software artifacts...
-curl -Lo ../build/caddy-linux-amd64 "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"
-curl -Lo ../build/caddy-linux-arm64 "https://caddyserver.com/api/download?os=linux&arch=arm64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"
-curl -Lo ../build/caddy-windows-amd64 "https://caddyserver.com/api/download?os=windows&arch=amd64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"
-curl -Lo ../build/caddy-windows-arm64 "https://caddyserver.com/api/download?os=windows&arch=arm64&p=github.com%2Fporech%2Fcaddy-maxmind-geolocation&p=github.com%2Fltgcgo%2Ffloaty"
-../shx echob Setting Windows executables...
-ls -1 *_windows_* | while IFS= read -r file; do
-	mv "${file}" "${file}.exe"
-done
-ls -1 *-windows-* | while IFS= read -r file; do
-	mv "${file}" "${file}.exe"
-done
-rm index.htm
-../shx echob Compressing files...
-ls -1 | while IFS= read -r file; do
-	if [[ "$file" == *".br" ]]; then
-		rm -f "$file"
-	elif [[ "$file" == *".zst" ]]; then
-		rm -f "$file"
-	elif [[ "$file" == *".gz" ]]; then
-		rm -f "$file"
-	else
-		brotli -jv9 "$file"
-	fi
-done
+#rm index.htm
 #../shx echob Generating web page...
 #bash ../lang/page.sh
 exit

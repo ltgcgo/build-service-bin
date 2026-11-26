@@ -1,0 +1,50 @@
+name: Get the offloaded binaries
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".github/workflows/offload.yml"
+      - "sh/**"
+      - "target/offload.sh"
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "30 17 * * 5"
+
+permissions:
+  contents: write
+  #pages: write
+  id-token: write
+
+concurrency:
+  group: "build-offload"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    #environment:
+      #name: github-pages
+      #url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build the releases
+        run: "bash target/offload.sh"
+      - name: Update the release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          artifacts: "build/*"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          makeLatest: false
+          prerelease: true
+          removeArtifacts: true
+          replacesArtifacts: true
+          name: "Offloaded binaries"
+          tag: "build-offload"

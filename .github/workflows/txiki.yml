@@ -40,8 +40,18 @@ jobs:
         uses: mlugg/setup-zig@v2
         with:
           version: latest
-      - name: Build the releases
-        run: "bash target/txiki.sh"
+      - name: Build for linux-amd64-gnu
+        run: "bash target/txiki.sh linux Linux amd64 x86_64 gnu"
+      - name: Build for linux-amd64-musl
+        run: "bash target/txiki.sh linux Linux amd64 x86_64 musl"
+      - name: Build for linux-arm64-gnu
+        run: "bash target/txiki.sh linux Linux arm64 aarch64 gnu"
+      - name: Build for linux-arm64-musl
+        run: "bash target/txiki.sh linux Linux arm64 aarch64 musl"
+      - name: Build for windows-amd64-gnu
+        run: "bash target/txiki.sh linux Linux amd64 x86_64 gnu"
+      - name: Build for windows-arm64-gnu
+        run: "bash target/txiki.sh linux Linux arm64 aarch64 gnu"
       - name: Update the release
         uses: ncipollo/release-action@v1
         env:

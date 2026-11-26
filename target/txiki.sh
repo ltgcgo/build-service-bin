@@ -72,8 +72,8 @@ mkdir -p dist
 build_triple $1 $2 $3 $4 $5
 mv -v dist/* ../build/
 cd ..
-rm -r source
+#rm -r source
 cd build
-bash ../sh/post.sh
+#bash ../sh/post.sh
 cd ..
 exit

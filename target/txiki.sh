@@ -47,8 +47,8 @@ cd source
 mkdir -p dist
 build_txiki_triple linux Linux amd64 x86_64 gnu
 build_txiki_triple linux Linux amd64 x86_64 musl
-#build_txiki_triple linux Linux arm64 aarch64 gnu
-#build_txiki_triple linux Linux arm64 aarch64 musl
+build_txiki_triple linux Linux arm64 aarch64 gnu
+build_txiki_triple linux Linux arm64 aarch64 musl
 #build_txiki_triple linux Linux riscv64 riscv64 gnu
 #build_txiki_triple linux Linux riscv64 riscv64 musl
 #build_txiki_triple windows Windows amd64 x86_64 gnu
